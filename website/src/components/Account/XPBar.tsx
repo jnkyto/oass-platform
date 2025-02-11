@@ -1,14 +1,8 @@
-import { Grid, GridItem, Icon, keyframes, Progress, Text, usePrefersReducedMotion } from "@chakra-ui/react";
+import { Grid, GridItem, Icon, Progress, Text, usePrefersReducedMotion } from "@chakra-ui/react";
 import { Star } from "lucide-react";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 import { useUserScore } from "src/hooks/ui/useUserScore";
-
-const spin = keyframes`
-0% {transform: rotate(0deg);}
-100% {transform: rotate(360deg);}
-`;
-const starAnimation = `${spin} infinite 4s cubic-bezier(0.52, -0.43, 0, 1.04)`;
 
 export const XPBar = () => {
   const { t } = useTranslation("leaderboard");
@@ -35,7 +29,7 @@ export const XPBar = () => {
       alignItems="center"
     >
       <GridItem area="star" justifySelf="center">
-        <Icon as={Star} boxSize={20} fill="gold" color="gold" animation={useMotion && starAnimation} />
+        <Icon as={Star} boxSize={20} fill="gold" color="gold" />
       </GridItem>
       <GridItem area="row1">
         <Text>{t("level_progress_message", { score, level })}</Text>
