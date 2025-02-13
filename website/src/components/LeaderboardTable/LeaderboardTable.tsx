@@ -19,7 +19,7 @@ const columnHelper = createColumnHelper<WindowLeaderboardEntity>();
 const jsonExpandRowModel = createJsonExpandRowModel<WindowLeaderboardEntity>();
 const streakDayThreshold = 2;
 
-const getTopUserWeekly = () => {
+const GetTopUserMonthly = () => {
   let topUser = "";
 
   const {
@@ -32,7 +32,9 @@ const getTopUserWeekly = () => {
   );
 
   if (reply) {
-    topUser += `${reply.leaderboard[0].user_id}`;
+    if (reply.leaderboard[0]) {
+      topUser += `${reply.leaderboard[0].user_id}`;
+    }
   }
 
   return topUser;
@@ -105,7 +107,7 @@ export const LeaderboardTable = ({
         },
         cell: ({ getValue, row }) => {
           const badges = {};
-          const topUser: string = getTopUserWeekly();
+          const topUser: string = GetTopUserMonthly();
           type BadgeKey = "top_month" | "streak";
 
           const user = row.original;
